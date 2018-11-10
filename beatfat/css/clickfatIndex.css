@@ -1,0 +1,78 @@
+﻿@charset "utf-8";
+/* CSS Document */
+html,body,div,img,p,a,span,i,label,br,ul,li{padding:0; margin:0}
+html,body{width:100%; height:100%}
+.none,.none img{ position: absolute; left: -999px; top: -999px; visibility: hidden;}
+body{ font-family:'黑体'; background-color:#f4b0ba}
+
+/*loading页面*/
+.load{position:absolute; width:100%; height:100%; left:0; top:0; z-index:99; background-color:#f4b0ba; opacity:1; filter:alpha(opacity:1); display:block; }
+.load img{width:100%;}
+.load .title{width:70%; margin:6% auto 10%}
+.load .title img,.load .title{  max-width:447px}
+.load .bianbian{width:73%; margin:0 auto; position:relative; }
+.load .bianbian img,.load .bianbian{ max-width:471px}
+.load .bianbian .gas{width:14%; position:absolute; right:0; bottom:23%}
+.load .bianbian .dog_icons{width:18%; position:absolute; right:-5%; top:-2%}
+.load .describe{ font-size:14px; color:#fff; width:100%; text-align:center; font-weight:bolder; position:absolute; left:50%; margin-left:-50%; bottom:13%; opacity:0.5; filter:alpha(opacity:0.5);}
+.load .footer{ width:10%; margin:0 auto; position:absolute; left:50%; margin-left:-5%; bottom:2%; max-width:54px; font-size:11px; color:rgba(0,0,0,0.3); text-align:center}
+
+@media only screen
+and (min-width : 360px){
+	.load .title{ margin-bottom:20%}
+	}
+
+/*主页*/
+.warp{ width:100%; height:100%; background-color:#f4b0ba; display:none}
+.warp .dog_icon{ position:absolute; left:-3%; top:15%; width:20%}
+.warp .dog_icon img{ width:100%; max-width:156px}
+.warp .main{width:82%; position:absolute; left:50%; margin-left:-43%; top:3%; text-align:center; max-width:447px}
+.warp .second{ color:#ff1e92; font-size:30px; margin-bottom:4%}
+.warp .hit{ width:86%; margin:0 auto; position:relative;}
+.warp .hit img{width:100%; max-width:447px}
+.warp .hit .border{ position:absolute; left:50%; bottom:-10%; width:70%; margin-left:-35%; background-image:url(../images/ScoreResult/border_01.png); background-repeat:no-repeat; background-size:159px 130px; height:60px; background-position:center 0}
+.warp .hit .bit{background-position:center -70px !important}
+.warp .hit i{position:absolute; display:inline-block; width:16%}
+.warp .hit i img{max-width:87px}
+.warp .hit .left{ left:-1%; top:40%; transform:rotate(-90deg); -webkit-transform:rotate(-90deg); -moz-transform:rotate(-90deg); -ms-transform:rotate(-90deg)}
+.warp .hit .right{right:-10%; top:40%; transform:rotate(90deg); -webkit-transform:rotate(90deg);-moz-transform:rotate(90deg); -ms-transform:rotate(90deg)}
+.warp .hit .top{ left:49%; top:0; }
+.warp .hit .bottom{left:49%; bottom:6%; transform:rotate(180deg); -webkit-transform:rotate(180deg); -moz-transform:rotate(180deg); -ms-transform:rotate(180deg)}
+.warp .score{ color:#ff1e92; font-size:36px; margin-top:11%}
+.warp .bestscroe{font-size:20px; width:80%; padding:6px 0; border-radius:5px; color:#757ab1; background-color:#b7c0ee; margin:3% auto 0}
+.warp .item{ width:100%; margin-top:2%; padding-bottom:2%}
+.warp .item .moreface,.warp .item .attention{ width:42%; display:inline-block; background-color:#fff; border-radius:5px; padding:3px}
+.warp .item a{ text-decoration:none;color:#fff; font-size:17px; }
+.warp .item .moreface span,.warp .item .attention span{ padding:4% 0; display:block; background-color:#7dcef4; border-radius:3px;}
+.warp .item .attention span{background-color:#f093aa !important}
+.warp .item .moreface{margin-right:8%}
+
+/*结果页面*/
+.resultPage{width:100%; height:100%; background-color:#f4b0ba; display:none; position: absolute; left:0; top:0; z-index:60}
+.resultPage img{width:100%}
+.common{ background-image:url(../images/ScoreResult/icon_03_01.png); background-repeat:no-repeat; background-size:17px 61px;display:inline-block;}
+.resultPage a{ text-decoration:none}
+.resultPage .mains{ width:100%; text-align:center; position:absolute; top:3%;}
+
+.resultPage .mains .titles{ width:30%; margin:0 auto}
+.resultPage .mains .titles ,.resultPage .mains .titles img{ max-width:141px}
+.resultPage .mains .mark{ font-size:30px !important; font-weight:bold}
+.resultPage .mains .mark, .resultPage .mains .describe,.resultPage .mains .bestmark{ font-size:17px; color:#e95b83; margin:3% auto 0; }
+.resultPage .mains .bestmark{ padding:2.5% 0; background-color:#f6d5da; width:60%; border-radius:5px; }
+.resultPage .mains .tryagain,.resultPage .mains .show{background-color:#fff; width:60%; border-radius:5px; padding:3px; margin:4% auto 0; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; position:relative}
+.resultPage .mains .tryagain a,.resultPage .mains .show a{ display:block; background-color:#7dcef4; color:#fff; border-radius:3px; padding:4%;}
+.resultPage .mains .tryagain i{ width:17px; height:18px; position:absolute; left:20%; top:50%; margin-top:-9px; background-position:0 -23px}
+.resultPage .mains .show i{ width:17px; height:18px; position:absolute; left:20%; top:50%; margin-top:-9px; background-position:0 -45px}
+.resultPage .mains .item{ width:63%; color:#fff; margin:4% auto 0; padding-bottom:2%}
+.resultPage .mains .item a{ display:inline-block; width:47%; background-color:#fff; color:#fff; border-radius:5px; padding:3px; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; font-size:14px}
+.resultPage .mains .item a span{background-color:#f093aa; border-radius:3px;  padding:7% 0; display:block}
+.resultPage .mains .item p{width:100%}
+.resultPage .mains .describe{ width:255px}
+
+/*分享页*/
+.share{width:100%; height:100%; background:rgba(92,57,69,0.7); display:none;  position:absolute; z-index:88; left:0; top:0}
+.share .title{position:absolute; top:4.5%; right:4.5%; color:#f4b0ba; font-weight:bolder}
+.share .title i{  width:13px; height:18px; background-position:0 0; position:relative; right:-70px; top:-18px}
+
+
+

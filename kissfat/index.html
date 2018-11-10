@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+<link type="text/css" rel="stylesheet" href="css/valentinKiss.css"/>
+<link type="text/css" rel="stylesheet" href="css/jquery.loading.css"/>
+     <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+     <script src="js/mpsdk/mpsdk.global.js"></script>
+    <script src="js/mpsdk/mpsdk.util.js?v=5"></script>
+
+    <script type="text/javascript" src="js/game/soundjs/easeljs-NEXT.min.js"></script>
+    <script type="text/javascript" src="js/game/soundjs/preloadjs-NEXT.min.js"></script>
+    <script type="text/javascript" src="js/game/soundjs/Sound.js"></script>
+    <script type="text/javascript" src="js/game/soundjs/WebAudioPlugin.js"></script>
+    <script type="text/javascript" src="js/game/soundjs/HTMLAudioPlugin.js"></script>
+
+    <script>
+        var Code = '<%=Request["code"]%>'.toString();//code值获取
+        if (MpSdk.Util.isWeixin() && Code == "") {
+            location.href = 'http://testmpsdk.fitout.cn/RedirectUri.aspx?returnUrl=http://testmpsdk.fitout.cn/activity/ValentineKiss.aspx';
+        }
+    </script>
+    <title>七夕情人节之吻</title>
+</head>
+<body>
+    <div class="warp"><div class="image"><img src="images/kiss-02.png" /></div></div>
+     <img id="images" src="images/kiss.png" />
+	 <div class="footer"><p>亲爱的, 今天是七夕情人节, 为了表达你对我的爱, 请亲吻屏幕吧！</p></div>
+     <span class="promt">亲你需要亲吻屏幕！</span>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery.loading.js?v=3"></script>
+<script type="text/javascript">
+    var assetsPath = "";
+    manifest = [
+        { id: "music", src: "val.mp3" }
+    ];
+
+    createjs.Sound.alternateExtensions = ["mp3"];
+    preload = new createjs.LoadQueue(true, assetsPath);
+    preload.installPlugin(createjs.Sound);
+    preload.addEventListener("complete", doneLoading);
+    preload.loadManifest(manifest);
+
+    function doneLoading() {
+
+        // start the music
+        createjs.Sound.play("music", { interrupt: createjs.Sound.INTERRUPT_NONE, loop: -1, volume: 0.4 });
+
+    }
+
+    var flag = false; 
+    $(function () {
+        //取唇印
+        //getkiss();
+        $('.warp').on('touchstart', function (event) {
+            event.preventDefault();
+            event = event.originalEvent;
+            if (flag) return;
+            if (event.touches.length == 1) { //单个手指
+                $('.promt').css('display', 'block'); //显示提示信息
+            } else if (event.touches.length >= 2) {
+                $('.promt').css('display', 'none');
+                var number = 0;
+                var x0 = event.touches[0].pageX;
+                var y0 = event.touches[0].pageY;
+                var x1 = event.touches[1].pageX;
+                var y1 = event.touches[1].pageY;
+                var left = (Math.max(x0, x1)) - (Math.floor((Math.abs(x0 - x1) / 2)));
+                var top = (Math.max(y0, y1)) - (Math.floor((Math.abs(y0 - y1) / 2)));
+                number++;
+                if (!flag) {
+                    var images = $('<img>').attr('src', 'images/kiss.png').addClass('images').css({ 'left': left, 'top': top, 'z-index': number });; //创建图片
+                    $('.warp').append(images);
+                    flag = true;
+                    getopenid(left,top,number);
+                }
+                
+            }
+        });
+        $('.warp').on('touchend,touchmove', function (event) {
+            event.preventDefault();
+            if (flag) return;
+            event = event.originalEvent;
+            if (event.touches.length == 1) {
+                $('.promt').css('display', 'block');
+            } else if (event.touches.length >= 2) {
+                $('.promt').css('display', 'none');
+            }
+        })
+    })
+    //取唇印
+    function getkiss() {
+        $("body").loading()
+        //alert("left=" + left + ",top=" + top + ",number=" + number);
+        $.ajax({//微信账号兑换
+            url: '/Handler/HdValentineKiss.ashx',
+            type: 'Get',
+            data: {},
+            success: function (data) {
+                var persons = $.parseJSON(data);
+                //alert(persons[0].andriod_download)
+                for (var i = 0; i < persons.length; i++) {
+                    var images = $('<img>').attr('src', 'images/kiss.png').addClass('images').css({ 'left': persons[i].XPos, 'top': persons[i].YPos, 'z-index': persons[i].ZIndex });; //创建图片
+                    $('.warp').append(images);
+                    $('body').closed();
+                }
+            }
+        });
+    }
+
+    //存微信号
+    function getopenid(left, top, number) {
+        //alert("left=" + left + ",top=" + top + ",number=" + number);
+        $.ajax({//微信账号兑换
+            url: '/Handler/HdScoreResult.ashx',
+            type: 'Get',
+            data: {
+                code: Code,
+                pagename: "valentinekiss",
+                xpos: left,
+                ypos: top,
+                zindex: number
+            },
+            success: function (data) {
+                //alert(data);
+            }
+        });
+    }
+
+    //分享
+    var dataForWeixin = {
+        appId: "",
+        MsgImg: "http://mpsdk.fitout.cn/images/facedown/logo_01.png",
+        title: "飞淘小胖七夕情人节",
+        desc: "请亲吻我吧！",
+    };
+
+    function shareTimeline() {
+        WeixinJSBridge.invoke('shareTimeline', {
+            "img_url": dataForWeixin.MsgImg,
+            "img_width": "200",
+            "img_height": "200",
+            "link": location.href,
+            "desc": dataForWeixin.desc,
+            "title": dataForWeixin.title
+        }, function (res) {
+            //if (n == 1) {
+            //    mpsdk.Util.logfacedown(4); //4-安卓微信分享
+            //}
+            //else {
+            //    MpSdk.Util.logfacedown(3); //3-安卓微信分享
+            //}
+        });
+    }
+    function shareFriend() {
+        WeixinJSBridge.invoke('sendAppMessage', {
+            "appid": dataForWeixin.appId,
+            "img_url": dataForWeixin.MsgImg,
+            "img_width": "200",
+            "img_height": "200",
+            "link": location.href,
+            "desc": dataForWeixin.desc,
+            "title": dataForWeixin.title
+        }, function (res) {
+            //if (n == 1)
+            //    Mpsdk.Util.logfacedown(4);// 4-IOS微信分享
+            //else
+            //    MpSdk.Util.logfacedown(3);//3-安卓微信分享
+        })
+    }
+
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+            shareTimeline();
+        });
+        //分享给朋友
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+            shareFriend();
+        });
+    }, false);
+</script>

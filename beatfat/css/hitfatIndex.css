@@ -1,0 +1,6 @@
+﻿*{padding:0; margin:0}
+html,body{width:100%; height:100%}
+body{background-image:url(../images/ScoreResult/bg.png); background-size:cover;}
+.warp{width:150px; height:150px; position:absolute; left:50%; top:50%; margin-left:-75px; margin-top:-75px}
+.warp img{width:100%}
+.number{color:#bd8266}

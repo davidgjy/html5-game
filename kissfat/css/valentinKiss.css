@@ -1,0 +1,13 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+html,body,div,p,img,span{padding:0; margin:0}
+html,body,.warp{width:100%; height:100%; overflow:hidden}
+body{ background-color:#615151}
+.warp{height:75% !important}
+.warp .image,.warp .image img{width:100%; height:100%}
+.footer{width:100%; height:25%; background-color:#615151; text-align:center; position:relative}
+.footer p{width:70%; height:100%; position:absolute; left:50%; margin-left:-35%; top:50%; margin-top:-25px; line-height:25px; color:#f23d3d}
+.images{width:70px; height:70px; position:absolute}
+#images{ display: none;}
+.promt{position:fixed; left:50%; top:50%; color:#f23d3d; border:1px solid #F3C; margin-left:-72px; margin-top:-11px; display:none; width:145px; height:22px; z-index:9999}

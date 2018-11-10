@@ -1,0 +1,50 @@
+﻿/*html,body,div,img,p,a{padding:0; margin:0}
+html,body{width:100%; height:100%}
+body{background-image:url(../images/ScoreResult/bg.png); background-size:cover;}
+.title{position:absolute; top:1.5%; right:4.5%; width:22%;}
+.title img{width:100%; max-width:140px}
+.main{width:50%; position:absolute; left:50%; margin-left:-25%; text-align:center; font-weight:bolder; top:50%; margin-top:-155px}
+.main .titles{width:48%; margin:0 auto 16px}
+.main .titles img{max-width:145px}
+.main .score{ color:#774e31; font-size:36px; margin-bottom:22px}
+.main .refresh,.main img,.main .titles img{width:100%}
+.main img{max-width:304px}
+.main .distance{margin-bottom:10px}*/
+
+html,body,div,img,p,a,span,i,label,br,ul,li{padding:0; margin:0}
+html,body{width:100%; height:100%}
+body{background-image:url(../images/ScoreResult/bg.png); background-size:cover;}
+.title{position:absolute; top:4.5%; right:4.5%; color:#502800; font-weight:bolder}
+.title i{  width:13px; height:18px; background-position:0 0; position:relative; right:-70px; top:-18px}
+.common{background-image:url(../images/ScoreResult/icon_01.png); background-repeat:no-repeat; background-size:21px 72px;display:inline-block;}
+.main{width:50%; position:absolute; left:50%; margin-left:-25%; text-align:center; font-weight:bolder; top:50%; margin-top:-182px }
+.main P{margin-bottom:12px}
+.main .titles{width:48%; margin:0 auto 12px}
+.main .titles img{max-width:145px; width:100%}
+.main .score{ color:#774e31; font-size:36px;}
+.main .history{ background:#e6ccad; color:#bd8266; padding:9px 0; border-radius:5px;}
+.main .refresh,.main .lookList {background:#fff8ea;border-radius:5px; height:54px; position:relative; box-shadow:0 4px 0 #e7d3be; -webkit-box-shadow:0 4px 0 #e7d3be; -moz-box-shadow:0 4px 0 #e7d3be}
+.main .lookList{line-height:54px}
+.main .lookList a{ padding:0 !important}
+.main .refresh a,.main .lookList a{text-decoration:none;  color:#502800; display:block; width:100%; padding:7px 0}
+.main .refresh i{ width:20px; height:22px; position:absolute; left:10%; top:50%; margin-top:-11px; background-position:0 -24px  }
+.main .lookList i{ width:21px; height:20px; position:absolute; left:10%; top:50%; margin-top:-10px; background-position:0 -52px}
+.main .lookList span{ margin-left:25px}
+.main .refresh span{ margin-left:15px}
+
+/*排行榜*/
+.top{width:100%; text-align:center; font-size:18px; color:#bd8266; font-weight:bolder; height:10%; padding-top:16px; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+.content{width:100%; height:78%; overflow:auto}
+.box{width:100%; height:10%; margin-top:2%}
+.mains,.footer{margin:0 4.5%}
+.mains ul li{list-style:none; border-top:1px solid #ebdcc8; padding:8px 0; font-size:14px}
+.mains ul li:nth-last-child(1){ border-bottom:1px solid #ebdcc8}
+.mains ul{ background:rgba(255,255,255,0.4)}
+.mains .number{ display:inline-block; width:9%; height:6%; text-align:center; vertical-align:middle; border-radius:3px; margin:0 6% 0 4.5%; font-size:20px}
+.mains .score{float:right; margin-right:6%; width:10%; text-align:center}
+.fisrt{background-color:#ff927c; }
+.second{background-color:#ffc281}
+.third{ background-color:#ffeb62}
+.footer{position:relative; text-align:center; background-color:#fff8ea; padding:10px 0; border-radius:5px; box-shadow:0 4px 0 #e7d3be; color:#502800; font-weight:bolder; display:block; cursor:pointer}
+.footer i{width:20px; height:22px; position:absolute; left:25%; top:50%; margin-top:-11px; background-position:0 -24px }
+.box a{text-decoration:none}

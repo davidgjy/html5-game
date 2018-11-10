@@ -1,0 +1,405 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+<link type="text/css" rel="stylesheet" href="css/clickfatIndex.css?v=3"/>
+    <title>个SHI胖子</title>
+</head>
+<body>
+<!--图片存入缓存-->
+<div class="none">
+	<img src="images/ScoreResult/bianbian_01.png" />
+	<img src="images/ScoreResult/border_01.png" />
+	<img src="images/ScoreResult/dog_01.png" />
+	<img src="images/ScoreResult/dog_02.png" />
+	<img src="images/ScoreResult/gas.gif" />
+	<img src="images/ScoreResult/icon_03_01.png" />
+	<img src="images/ScoreResult/icon01.png" />
+	<img src="images/ScoreResult/logo1.png" />
+    <img src="images/ScoreResult/logo2.png" />
+    <img src="images/ScoreResult/logo3.png" />
+    <img src="images/ScoreResult/bb_logo.png" />
+    <img src="images/ScoreResult/scores_01.png" />
+</div>
+<!--loading-->
+<div class="load">
+     <div class="title"><img src="images/ScoreResult/logo3.png" /></div>
+	 <div class="bianbian">
+	      <img src="images/ScoreResult/bianbian_01.png" />
+		  <p class="gas"><img src="images/ScoreResult/gas.gif" /></p>
+	      <p class="dog_icons"><img src="images/ScoreResult/dog_02.png" /></p>
+     </div>
+	 <div class="describe">点击屏幕开始游戏</div>
+	 <div class="footer"><img src="images/ScoreResult/bb_logo.png" /><span>v0.2</span></div>
+</div>
+
+<!--主页-->
+<div class="warp">
+     <div class="main">
+	      <div class="second"><label class="seconds">10</label>秒</div>
+	      <div class="hit">
+               <img src="images/ScoreResult/logo1.png" id="image" />
+               <div class="border"></div>
+               <i class="left"><img src="images/ScoreResult/icon01.png" /></i>
+               <i class="right"><img src="images/ScoreResult/icon01.png" /></i>
+               <i class="top"><img src="images/ScoreResult/icon01.png" /></i>
+               <i class="bottom"><img src="images/ScoreResult/icon01.png" /></i>
+          </div>
+		  <div class="score"><label class="scores">0</label>次</div>
+		  <div class="item">
+               <a href="#" class="moreface"><span>更多表情</span></a>
+               <a href="http://mp.weixin.qq.com/s?__biz=MzA3NjIxMTAxOA==&mid=200673159&idx=1&sn=d26bc0104a006256037feeeed796b9c8#rd?v=1" class="attention"><span>关注我们</span></a>
+          </div>
+	 </div>
+     <div class="dog_icon"><img src="images/ScoreResult/dog_01.png" /></div>
+</div>
+
+<!--结果页-->
+<div class="resultPage">
+     <div class="mains">
+	       <p class="titles"><img src="images/ScoreResult/scores_01.png" /></p>
+		   <p class="mark"><label class="grade"></label>次</p>
+		   <p class="describe">才打几次，加油！</p>
+		   <p class="bestmark">屎上最强：
+			<!--<label class="bestgrade"></label>-->
+			228次
+		   </p>
+           <p class="show"><a>炫耀一下</a><i class="common"></i></p> 
+		   <p class="tryagain">
+               <!--<a href="http://mpsdk.fitout.cn/RedirectUri.aspx?returnUrl=http://mpsdk.fitout.cn/mpwebgame/clickfat/index.aspx">再打一次</a>-->
+			   <a href="http://games.coolbaba.net/Games/beatfat/index.html">再打一次</a>
+               <i class="common"></i>
+		   </p>
+		   <div class="item">
+               <p><a href="#" class="moreface"><span>更多表情</span></a>
+               <a href="#" class="attention"><span>关注我们</span></a></p>
+          </div>
+	 </div>
+</div>
+
+<!--分享页-->
+<div class="share">
+     <div class="title"><i class="common"></i>分享给好友</div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script src="/Scripts/mpsdk/mpsdk.cookie.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+   
+    var dataForWeixin = {
+        appId: "",
+        MsgImg: "http://mpsdk.fitout.cn/MpWebgame/clickfat/images/ScoreResult/bianbian_01.png",
+        title: "《个SHI胖子》——原来我是“金手指”",
+        desc: "《个SHI胖子》——原来我是“金手指”",
+    };
+
+
+
+    function shareTimeline(data) {
+        WeixinJSBridge.invoke('shareTimeline', {
+            "img_url": data.MsgImg,
+            "img_width": "200",
+            "img_height": "200",
+            "link": location.href,
+            "desc": data.desc,
+            "title": data.title
+        });
+    }
+    function shareFriend(data) {
+        WeixinJSBridge.invoke('sendAppMessage', {
+            "appid": dataForWeixin.appId,
+            "img_url": dataForWeixin.MsgImg,
+            "img_width": "200",
+            "img_height": "200",
+            "link": location.href,
+            "desc": dataForWeixin.desc,
+            "title": dataForWeixin.title
+        })
+    }
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+            shareTimeline(dataForWeixin);
+
+        });
+        //分享给朋友
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+            shareFriend(dataForWeixin);
+        });
+    }, false);
+
+    var newscore = 0;
+
+    
+    
+
+    /*
+    var cookie = new Cookie("playerId");
+    if (!cookie.id) {
+        cookie.id = playerId;
+    }
+    cookie.store(30);
+    */
+
+    var num = 0; //次数
+    var set = null;  //定时器变量
+    var flag = true;  //控制用户第二次点击时，时间不变又从10秒开始倒计时
+    var timer = null;
+    var isRun = true;
+    var startDate = new Date();
+    var isStart = 0;
+
+    /*页面第一次加载背景图片显示*/
+    window.onload = function () {
+        /*去掉iphone手机滑动默认行为*/
+        $('body').on('touchmove',function(event){
+            event.preventDefault();
+
+        });
+        $('.load').on('touchstart', function (event) {
+            event.stopPropagation();
+            $('.warp').css('display', 'block');
+            $('.load').css('display', 'none');
+            window.clearInterval(timerfont);
+        });
+
+        var timerfont = window.setInterval(function () {
+            $('.load .describe').animate({ opacity: 1 }, 800, function () {
+                $('.load .describe').animate({ opacity: 0.5 });
+            });
+        }, 1000);
+
+        /*再打一次事件*/
+        /*
+        $('.resultPage .tryagain').on('touchstart', function () {
+            $('.resultPage .tryagain').css('background-color', 'rgba(255,255,255,0.4)');
+            $('.warp .seconds').html('10');
+            $('.resultPage').css('display', 'none');
+            $('.warp').css({ 'opacity': '1', 'display': 'block' });
+            $('#image').on('touchstart', function (event) {
+                hitfatstart(event)
+            });
+            $('#image').on('touchend', function (event) {
+                hiftfatend(event);
+            });
+
+        });
+        */
+
+        /*炫耀一下*/
+        //$('.resultPage  .show').on('touchstart', function () {
+        //    $('.resultPage  .show').css('background-color', 'rgba(255,255,255,0.4)');
+        //    $('.resultPage').css('display', 'none');
+        //    $('.share').css('display', 'block');
+        //});
+        /*炫耀一下*/
+        $('.resultPage  .show').on('touchstart', function () {
+            $('.resultPage  .show').css('background-color', 'rgba(255,255,255,0.4)');
+            //  $('.resultPage').css('display', 'none');
+            // $('.resultPage').css('z-index','70');
+            $('.share').css('display', 'block');
+        });
+
+        /*炫耀一下end*/
+        $('.resultPage  .show').on('touchend', function () {
+            $('.resultPage  .show').css('background-color', 'rgba(255,255,255,1)');
+        });
+
+
+        /*关闭弹出层*/
+        $('.share').on('touchstart', function (ev) {
+            ev.stopPropagation();
+            $('.share').css('display', 'none');
+
+        })
+
+    }
+
+    $(function () {
+        /*打小胖事件*/
+        $('#image').on('touchstart', function (event) {
+            hitfatstart(event);
+        });
+        $('#image').on('touchend', function (event) {
+            hiftfatend(event);
+        });
+        //点击“更多表情”
+        $(".moreface").on('touchstart', function (event) {
+            event.stopPropagation();
+            //alert("openid=" + openid);
+            //logdownsums(21, openid); //点击“更多表情”
+            $(".moreface").attr('href', 'http://mpsdk.fitout.cn/face/FaceDown.aspx');
+
+
+        });
+        //点击“关注我们”
+        $(".attention").on('touchstart', function (event) {
+            event.stopPropagation();
+            logdownsums(20, openid); //点击“关注我们”
+            $(".attention").attr('href', 'http://mp.weixin.qq.com/s?__biz=MzA3NjIxMTAxOA==&mid=200673159&idx=1&sn=d26bc0104a006256037feeeed796b9c8#rd?v=1');
+        });
+        
+
+    });
+
+
+    function hitfatstart(event) {
+        $('#image').attr('src', 'images/ScoreResult/logo2.png');
+        $('.hit .border').addClass('bit');
+        window.clearInterval(timer);
+        goInside();
+        if (flag) {
+            window.clearInterval(set);
+            event.preventDefault();
+            set = window.setInterval(function () {
+                if (isStart == 0) {
+                    startDate = new Date();
+                    isStart = 1;
+                }
+                var currentDate = new Date();
+                var currentS = (currentDate - startDate) / 100;
+                if ((currentDate - startDate) / 1000 >= 10) {
+                    $('.main .seconds').html("0");
+                    doItMore();
+                    $('#image').off('touchstart');
+                    $('#image').off('touchend');
+                    $('.warp').css('display', 'none');
+                    $('.resultPage').css('display', 'block');
+                    window.clearInterval(set);
+
+                    //记录score 并获取 maxscore
+
+                    dataForWeixin = {
+                        appId: "",
+                        MsgImg: "http://mpsdk.fitout.cn/MpWebgame/clickfat/images/ScoreResult/bianbian_01.png",
+                        title: "个SHI胖子被我打了" + $(".grade").html() + "下，伐开心，要包包！",
+                        desc: "SHI胖子百抽不爽！猛点胖子，10秒你能抽几次？",
+                    };
+                    //alert("Player Id: " + playerId);
+                    getmaxscore($(".grade").html(), openid);
+                    return;
+                }
+
+                //字符串操作
+                var strs = 10000 - (currentDate - startDate);
+                if (String(strs).length == 4) {
+                    var timeStr = String(strs);
+                    var newStrs = timeStr.substring(0, 1) + "." + timeStr.substring(1)
+                } else {
+                    var newStrs = "0." + String(strs)
+                };
+                $('.main .seconds').html(Number(newStrs).toFixed(2));
+            }, 10)
+        };
+        flag = false;
+        num++;
+        $('.main .scores').html(num);
+        $('.mark .grade').html(num);
+
+        /*判断*/
+        if ($('.resultPage .grade').html() <= 50 && $('.resultPage .grade').html() >= 0) {
+            $('.resultPage .describe').html('个逗比， 手速这么慢！');
+        } else if ($('.resultPage .grade').html() <= 100 && $('.resultPage .grade').html() >= 51) {
+            $('.resultPage .describe').html('你酱紫还有希望吗？后会有期！');
+        } else if ($('.resultPage .grade').html() <= 130 && $('.resultPage .grade').html() >= 101) {
+            $('.resultPage .describe').html('噢哟！有练过哦！');
+        } else if ($('.resultPage .grade').html() <= 160 && $('.resultPage .grade').html() >= 131) {
+            $('.resultPage .describe').html('这么屌！我会找你报仇的！');
+        } else if ($('.resultPage .grade').html() > 160) {
+            $('.resultPage .describe').html('你你你你你….太可怕了。你是上帝之手！');
+        }
+
+    }
+
+    function hiftfatend(event) {
+        $('#image').attr('src', 'images/ScoreResult/logo1.png');
+        $('.hit .border').removeClass('bit');
+        goOutside();
+        autoRun();
+        event.preventDefault();
+    }
+
+    /*小三角自动播放*/
+    autoRun();
+
+    /*收缩*/
+    function goInside() {
+        $('.hit .left').animate({ left: '1%' }, 100);
+        $('.hit .right').animate({ right: '-8%' }, 100);
+        $('.hit .top').animate({ top: '2%' }, 100);
+        $('.hit .bottom').animate({ bottom: '8%' }, 100);
+    }
+    /*展开*/
+    function goOutside() {
+        $('.hit .left').animate({ left: '-1%' }, 100);
+        $('.hit .right').animate({ right: '-10%' }, 100);
+        $('.hit .top').animate({ top: '0%' }, 100);
+        $('.hit .bottom').animate({ bottom: '6%' }, 100);
+    }
+
+    /*小三角自动播放*/
+    function autoRun() {
+        timer = window.setInterval(function () {
+            if (isRun) {
+                goInside();
+            } else {
+                goOutside();
+            }
+            isRun = !isRun;
+        }, 200)
+    }
+
+    /*再打一次*/
+    function doItMore() {
+        isStart = 0;
+        flag = true;
+        num = 0;
+        $('.warp .scores').html(0);
+    }
+    /*链接点击效果*/
+    $('.item .attention').on('touchstart', function () {
+        $('.item .attention').css('background-color', 'rgba(255,255,255,0.4)');
+    })
+
+    $('.item .moreface').on('touchstart', function () {
+        $('.item .moreface').css('background-color', 'rgba(255,255,255,0.4)');
+    })
+
+    //
+
+    //存score 取maxscore
+    function getmaxscore(score, playerId) {//playerId 已兑换的openid
+        //alert(playerId);
+        $.ajax({//微信账号兑换
+            url: '/Handler/HdScoreResult.ashx',
+            type: 'Get',
+            data: { gameid: 2, score: score, openid: playerId, pagename: "" },
+            success: function (data) {
+                var persons = $.parseJSON(data);
+                $(".bestgrade").text(persons["score"]);
+            }
+        });
+    }
+
+    //访问统计
+    function logdownsums(type, Openid) {//访问统计
+        $.ajax({
+            url: '/Handler/HdLogViewCount.ashx',
+            type: 'Get',
+            data: { type: type, openid: Openid },
+            success: function (data) {
+            }
+        });
+    }
+
+
+
+
+
+</script>

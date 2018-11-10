@@ -1,0 +1,58 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.shade{position:absolute; width:100%; height:100%; background:#000; opacity:0.7; left:0; top:0}
+.loading{width:100px; height:80px; position:absolute; left:50%; top:50%; margin-left:-50px; margin-top:-40px; }
+.circle{position: relative; background:rgba(0,0,0,0.8);width:100px; height:80px; border-radius:10px }
+.circle i{position: absolute; left: 50%; top: 50%; background-image:url(../images/down/quan_1.png); width:60px; height:60px;
+  margin-left: -30px; margin-top: -30px; transform:rotate(0deg);
+   animation:wobble 1s linear infinite;
+  -moz-animation:wobble 1s linear 0 infinite;
+  -webkit-animation:wobble 1s linear 0 infinite; 
+  -ms-animation:wobble 1s linear 0 infinite;  
+   }
+.logo{position:absolute; left:50%; top:50%; margin-left:-30px; margin-top:-30px}
+@media only screen
+and (max-width : 320px){
+	.loading{ 
+	         width:100px; 
+	         height:80px; 
+			 margin-left:-50px; 
+			 margin-top:-40px;
+	}
+	.circle{
+		 width:100px; 
+	     height:80px; 
+	}
+}
+@-webkit-keyframes wobble {
+     0% {
+        -webkit-transform:rotate(0deg);
+     }
+     100% {
+       -webkit-transform:rotate(360deg);
+     }
+  }
+@-moz-keyframes wobble {
+     0% {
+        -moz-transform:rotate(0deg);
+     }
+     100% {
+       -moz-transform:rotate(360deg);
+     }
+  }
+@-ms-keyframes wobble {
+     0% {
+        -moz-transform:rotate(0deg);
+     }
+     100% {
+       -moz-transform:rotate(360deg);
+     }
+  }
+@keyframes wobble {
+     0% {
+        transform:rotate(0deg);
+     }
+     100% {
+       transform:rotate(360deg);
+     }
+  }
